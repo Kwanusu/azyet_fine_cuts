@@ -1,0 +1,107 @@
+/*  */
+:root {
+    --main-bg-color: rgb(6, 155, 205);
+    --main-text-color: darkblue;
+    --main-res-color: lightgreen;
+    --text-font: 16px;
+    --button-padding: 10px 20px;
+    --button-text: white;
+    --button-bg-color: blue;
+}
+.btn {
+    padding: var(--button-padding);
+    color: var(--button-text);
+    background-color: var(--button-bg-color);
+    border-radius: 8px;
+}
+
+
+.background {
+    position:relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url(/assets/images/pexels-hanuman-photo-studio-564865561-17565390.jpg);
+}
+
+#card {
+    position: absolute;
+    height: 60%;
+    width: 40%;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(89, 131, 83, 0.09);
+    backdrop-filter: blur( 2px);
+    border-radius: 1em;
+    display: flex;
+    transition: transform 0.8s, backdrop-filter 0.5s;
+    z-index: 10;
+    align-items: center;
+    justify-content: center;  
+}
+
+#card:hover {
+    backdrop-filter: blur ( 14px);
+    height: 60%;
+    width: 40%;
+    transform: rotateY(180deg);
+    cursor: pointer;
+}
+
+#logo {
+    height: 90%;
+    width: 75%;
+}
+
+    .box {
+        position: absolute;
+        height: 200px;
+        width: 280px;
+        background-color: #f0baba;
+        z-index: auto;
+        text-align: center;
+        padding: 3px;
+        left: 10px;
+        top: 10px;
+    }
+
+        .box1 {
+        position: absolute;
+        height: 120px;
+        width: 200px;
+        background-color: #eae98f;
+        z-index: -1;
+        text-align: center;
+        padding: 5px;
+        margin: 20px;
+        left: 30px;
+        top: 30px;
+    }
+
+    .mybox {
+        width: 200px;
+        height: 200px;
+        background-color: #3498db;
+        border-radius: 50%;
+        margin-top: 2em;
+        position: relative;
+        left: 0;
+        animation-name: moveRight;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes moveRight {
+        to {
+            left: calc(100% - 50px)
+        }
+    }
+    body {
+        background-color: var(--main-bg-color);
+
+    }
+    @media (min-width: 500px) and (max-width: 789px) {
+        body {
+            background-color: var(--main-res-color);
+        }
+    }

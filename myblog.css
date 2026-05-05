@@ -1,0 +1,65 @@
+.unit-mm {
+    font-size: 5mm;
+}
+
+.unit-cm {
+    font-size: 1cm;
+}
+
+.unit-inch {
+    font-size: 0.5in;
+}
+
+.unit-quarter {
+    font-size: 40Q;
+}
+
+.unit-px {
+    font-size: 100px;
+}
+
+.unit-em {
+    font-size: 5em;
+}
+
+.unit-rem {
+    font-size: 1.5rem;
+}
+
+.unit-vw {
+    font-size: 5vw;
+}
+
+.unit-vh {
+    font-size: 5vh;
+}
+
+.unit-percent {
+    font-size: 150%;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+
+.img-container {
+    width: 50%;
+    height: 50%;
+}
+
+h3 {
+    color: blue;
+    text-shadow: 2px 2px 3px black;
+}
+
+.container {
+    background-color: yellowgreen;
+    width: 50%;
+    height: 40vh;
+    text-align: center;
+    margin-top: 5px;
+    border-radius: 8px;
+    box-shadow: -2px -2px 3px black;
+}

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the full range of premium grooming services at Azyet Fine Cuts. From signature fades to royal hot shaves.">
+    <title>Our Services | Azyet Fine Cuts</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --stone-950: #0c0a09;
+            --stone-900: #1c1917;
+            --stone-800: #292524;
+            --amber-500: #f59e0b;
+            --amber-600: #d97706;
+            --white: #fafaf9;
+            --stone-400: #a8a29e;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--stone-950);
+            color: var(--white);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        header {
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--stone-900);
+            border-bottom: 1px solid var(--stone-800);
+        }
+
+        header h1 { color: var(--amber-500); font-size: 1.5rem; margin: 0; text-transform: uppercase; }
+
+        nav ul { list-style: none; display: flex; gap: 2rem; margin: 0; }
+        nav a { color: var(--white); text-decoration: none; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--amber-500); }
+
+        /* Page Hero */
+        .services-hero {
+            text-align: center;
+            padding: 5rem 10%;
+            background: linear-gradient(rgba(12,10,9,0.8), rgba(12,10,9,0.8)), 
+                        url('https://images.unsplash.com/photo-1512690196252-741ef2ae3f90?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .services-hero h2 { font-size: 3rem; margin-bottom: 0.5rem; }
+        .services-hero p { color: var(--amber-500); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* Service Menu Layout */
+        .menu-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 10%;
+        }
+
+        .service-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 6rem;
+        }
+
+        .service-row:nth-child(even) { direction: rtl; }
+        .service-row:nth-child(even) .service-text { direction: ltr; }
+
+        .service-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border: 1px solid var(--stone-800);
+        }
+
+        .service-text h3 {
+            font-size: 2rem;
+            color: var(--amber-500);
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .service-text .price { font-family: serif; font-style: italic; color: var(--white); font-size: 1.5rem; }
+        
+        .service-text p { color: var(--stone-400); font-size: 1.1rem; margin-bottom: 1.5rem; }
+
+        .duration {
+            display: inline-block;
+            background: var(--stone-800);
+            color: var(--amber-500);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .book-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--amber-500);
+            color: var(--stone-950);
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .book-btn:hover { background: var(--amber-600); transform: translateY(-2px); }
+
+        /* Consistent Footer */
+        footer {
+            background-color: var(--stone-900);
+            padding: 4rem 10% 2rem;
+            border-top: 4px solid var(--amber-500);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 { color: var(--amber-500); margin-bottom: 1.5rem; text-transform: uppercase; }
+        .footer-section p, .footer-section li { color: var(--stone-400); font-size: 0.95rem; }
+        .footer-section a { color: inherit; text-decoration: none; }
+        .footer-section a:hover { color: var(--amber-500); }
+
+        @media (max-width: 850px) {
+            .service-row, .service-row:nth-child(even) { grid-template-columns: 1fr; direction: ltr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Azyet Fine Cuts</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="services-hero">
+        <h2>Premium Grooming</h2>
+        <p>Refined Services for the Modern Man</p>
+    </div>
+
+    <main class="menu-container">
+        <section class="service-row">
+            <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&q=80&w=800" alt="The Signature Cut">
+            </div>
+            <div class="service-text">
+                <span class="duration"><i class="far fa-clock"></i> 45 Minutes</span>
+                <h3>The Signature Cut <span class="price">$35</span></h3>
+                <p>Our standard-setting service. Includes a thorough consultation, precision haircut, straight-razor neck shave, and a professional style to finish. Experience the Azyet difference.</p>
+                <a href="contact.html" class="book-btn">Book Appointment</a>
+            </div>
+        </section>
+
+        <section class="service-row">
+            <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1593702295094-272a9429693d?auto=format&fit=crop&q=80&w=800" alt="Beard Sculpting">
+            </div>
+            <div class="service-text">
+                <span class="duration"><i class="far fa-clock"></i> 30 Minutes</span>
+                <h3>Beard Sculpting <span class="price">$25</span></h3>
+                <p>Maintain your edge with a full beard trim, shaping, and outlining. Finished with a hot towel treatment and premium beard oil to keep your facial hair healthy and sharp.</p>
+                <a href="contact.html" class="book-btn">Book Appointment</a>
+            </div>
+        </section>
+
+        <section class="service-row">
+            <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=800" alt="Royal Hot Shave">
+            </div>
+            <div class="service-text">
+                <span class="duration"><i class="far fa-clock"></i> 60 Minutes</span>
+                <h3>Royal Hot Shave <span class="price">$45</span></h3>
+                <p>The ultimate grooming ritual. Multiple hot towel applications, pre-shave oils, rich lather, and a two-pass straight razor shave followed by a cold towel and soothing aftershave balm.</p>
+                <a href="contact.html" class="book-btn">Book Appointment</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Azyet Fine Cuts</h4>
+                <p>Precision in every cut. Style in every detail. Your premium grooming sanctuary in the heart of the city.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Visit Us</h4>
+                <p>
+                    <i class="fas fa-map-marker-alt" style="color: var(--amber-500); margin-right: 8px;"></i> 123 Barber St, Downtown<br>
+                    <i class="fas fa-phone" style="color: var(--amber-500); margin-right: 8px;"></i> (555) 123-4567
+                </p>
+            </div>
+        </div>
+        <div style="text-align: center; border-top: 1px solid var(--stone-800); padding-top: 2rem; margin-top: 2rem; font-size: 0.85rem; color: var(--stone-700);">
+            &copy; 2026 Azyet Fine Cuts. All Rights Reserved.
+        </div>
+    </footer>
+</body>
+</html>

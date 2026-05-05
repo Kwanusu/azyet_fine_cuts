@@ -2,34 +2,312 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact Us | Azyet Fine Cuts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book your appointment at Azyet Fine Cuts. Contact us for premium barbering services.">
+    <title>Contact & Booking | Azyet Fine Cuts</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --stone-950: #0c0a09;
+            --stone-900: #1c1917;
+            --stone-800: #292524;
+            --stone-700: #44403c;
+            --amber-500: #f59e0b;
+            --amber-600: #d97706;
+            --white: #fafaf9;
+            --stone-400: #a8a29e;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--stone-950);
+            color: var(--white);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--stone-900);
+        }
+
+        header h1 { color: var(--amber-500); font-size: 1.5rem; margin: 0; text-transform: uppercase; }
+
+        .back-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover { color: var(--amber-500); }
+
+        .container {
+            max-width: 1100px;
+            margin: 4rem auto;
+            padding: 0 10%;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+        }
+
+        h2 { color: var(--amber-500); margin-bottom: 1.5rem; font-size: 2rem; }
+
+        /* Contact Info Card */
+        .info-card {
+            background: var(--stone-900);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-top: 4px solid var(--amber-500);
+        }
+
+        .info-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .info-item i { color: var(--amber-500); font-size: 1.25rem; margin-top: 5px; }
+        .info-item h4 { margin: 0 0 5px 0; color: var(--white); }
+        .info-item p { margin: 0; color: var(--stone-400); }
+
+        /* Booking Form */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+
+        label { font-size: 0.9rem; font-weight: 600; color: var(--stone-400); }
+
+        input, select, textarea {
+            background: var(--stone-900);
+            border: 1px solid var(--stone-700);
+            padding: 0.8rem;
+            color: var(--white);
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus { border-color: var(--amber-500); }
+
+        button {
+            background: var(--amber-500);
+            color: var(--stone-950);
+            padding: 1rem;
+            border: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        button:hover { background: var(--amber-600); transform: translateY(-2px); }
+
+        /* Master Footer Styles */
+        footer {
+            background-color: var(--stone-900);
+            padding: 4rem 10% 2rem;
+            border-top: 4px solid var(--amber-500);
+            margin-top: 5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 { 
+            color: var(--amber-500); 
+            margin-bottom: 1.5rem; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        .footer-section p, .footer-section li { 
+            color: var(--stone-400); 
+            font-size: 0.95rem; 
+            line-height: 1.8; 
+        }
+
+        .footer-section ul { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0;
+        }
+
+        .footer-section a { 
+            color: inherit; 
+            text-decoration: none; 
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover { 
+            color: var(--amber-500); 
+        }
+
+        .footer-social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 1.5rem;
+        }
+
+        .footer-social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: var(--stone-800);
+            color: var(--white);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social-links a:hover {
+            background: var(--amber-500);
+            color: var(--stone-950);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid var(--stone-800);
+            padding-top: 2rem;
+            font-size: 0.85rem;
+            color: var(--stone-700);
+        }
+
+        @media (max-width: 850px) {
+            .container { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Get in Touch</h1>
-    <main>
-        <section>
-            <h2>Location & Hours</h2>
-            <p>123 Grooming St, Downtown</p>
-            <p>Mon-Sat: 9:00 AM - 8:00 PM</p>
+
+    <header>
+        <h1>Azyet Fine Cuts</h1>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Home</a>
+    </header>
+
+    <main class="container">
+        <section class="info-card">
+            <h2>Find Us</h2>
+            
+            <div class="info-item">
+                <i class="fas fa-location-dot"></i>
+                <div>
+                    <h4>Location</h4>
+                    <p>123 Grooming St, Downtown<br>City, ST 12345</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <h4>Hours</h4>
+                    <p>Mon - Fri: 9:00 AM - 8:00 PM<br>Sat: 10:00 AM - 6:00 PM</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h4>Call Us</h4>
+                    <p>(+254) 725-439354</p>
+                </div>
+            </div>
         </section>
 
         <section>
             <h2>Book Your Seat</h2>
             <form>
-                <label for="name">Full Name:</label><br>
-                <input type="text" id="name" required><br>
-                
-                <label for="service">Service:</label><br>
-                <select id="service">
-                    <option value="cut">Haircut</option>
-                    <option value="beard">Beard Trim</option>
-                    <option value="shave">Hot Shave</option>
-                </select><br>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="John Doe" required>
+                </div>
 
-                <button type="submit">Submit Request</button>
+                <div class="form-group">
+                    <label for="service">Select Service</label>
+                    <select id="service">
+                        <option value="cut">The Signature Cut - $35</option>
+                        <option value="beard">Beard Sculpting - $25</option>
+                        <option value="shave">Royal Hot Shave - $40</option>
+                        <option value="full">The Full Works - $90</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Preferred Date</label>
+                    <input type="date" id="date" required>
+                </div>
+
+                <button type="submit">Confirm Booking Request</button>
             </form>
         </section>
-        <a href="index.html">Go back</a>
     </main>
+
+   <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Azyet Fine Cuts</h4>
+                <p>Founded on precision and community, we provide a sanctuary for the modern gentleman. Experience the craft of premium barbering.</p>
+                <div class="footer-social-links">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Shop Hours</h4>
+                <ul>
+                    <li>Mon - Fri: 9:00 AM - 8:00 PM</li>
+                    <li>Saturday: 10:00 AM - 6:00 PM</li>
+                    <li>Sunday: Closed</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="contact.html">Book Appointment</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Visit Us</h4>
+                <p>
+                    <i class="fas fa-map-marker-alt" style="color: var(--amber-500); margin-right: 8px;"></i> 123 Barber St, Downtown<br>
+                    <i class="fas fa-phone" style="color: var(--amber-500); margin-right: 8px;"></i> (+254) 725-439354<br>
+                    <i class="fas fa-envelope" style="color: var(--amber-500); margin-right: 8px;"></i> hello@azyetcuts.com
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Azyet Fine Cuts. All Rights Reserved. | Stay Sharp.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
