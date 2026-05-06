@@ -20,17 +20,23 @@
             --stone-400: #a8a29e;
         }
 
+        * { box-sizing: border-box; }
+
         body {
             font-family: 'Inter', system-ui, sans-serif;
             background-color: var(--stone-950);
             color: var(--white);
             margin: 0;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Navigation */
-        header.top-nav {
-            padding: 1.5rem 10%;
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -38,111 +44,172 @@
             border-bottom: 1px solid var(--stone-800);
         }
 
-        header.top-nav h1 { color: var(--amber-500); font-size: 1.5rem; margin: 0; text-transform: uppercase; }
+        header h1 { color: var(--amber-500); font-size: 1.25rem; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
 
-        nav ul { list-style: none; display: flex; gap: 2rem; margin: 0; }
-        nav a { color: var(--white); text-decoration: none; font-weight: 500; transition: 0.3s; }
-        nav a:hover { color: var(--amber-500); }
-
-        /* Blog Header */
-        .blog-hero {
-            text-align: center;
-            padding: 4rem 10%;
-            background: linear-gradient(var(--stone-900), var(--stone-950));
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
         }
 
-        .blog-hero h2 { font-size: 3rem; margin-bottom: 0.5rem; color: var(--white); }
-        .blog-hero p { color: var(--amber-500); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+        nav ul { list-style: none; display: flex; gap: 2rem; margin: 0; padding: 0; }
+        nav a { color: var(--white); text-decoration: none; font-weight: 500; transition: 0.3s; font-size: 0.9rem; }
+        nav a:hover { color: var(--amber-500); }
+
+        /* Blog Hero */
+        .blog-hero {
+            text-align: center;
+            padding: clamp(4rem, 10vh, 6rem) 5%;
+            background: linear-gradient(rgba(12,10,9,0.9), rgba(12,10,9,0.9)), 
+                        url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid var(--stone-800);
+        }
+
+        .blog-hero h2 { font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 0.5rem; }
+        .blog-hero p { color: var(--amber-500); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; }
 
         /* Blog Grid */
         .blog-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 10% 5rem;
+            padding: 5rem 5%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
         }
 
         article {
             background: var(--stone-900);
-            border-radius: 8px;
+            border-radius: 4px;
             overflow: hidden;
             border: 1px solid var(--stone-800);
-            transition: transform 0.3s ease, border-color 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
         }
 
         article:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             border-color: var(--amber-500);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         .article-image {
             width: 100%;
-            height: 200px;
+            height: 240px;
             background-size: cover;
             background-position: center;
+            position: relative;
         }
 
-        .article-content { padding: 1.5rem; }
+        .category-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--amber-500);
+            color: var(--stone-950);
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 2px;
+        }
+
+        .article-content { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; }
 
         .meta {
-            font-size: 0.8rem;
-            color: var(--amber-500);
+            font-size: 0.75rem;
+            color: var(--stone-400);
             text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
             display: block;
         }
 
-        article h2 { font-size: 1.4rem; margin: 0.5rem 0; color: var(--white); line-height: 1.3; }
-        article p { color: var(--stone-400); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        article h2 { font-size: 1.5rem; margin: 0 0 1rem 0; color: var(--white); line-height: 1.2; }
+        article p { color: var(--stone-400); font-size: 0.95rem; margin-bottom: 2rem; }
 
         .read-more {
+            margin-top: auto;
             color: var(--amber-500);
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+            transition: 0.2s;
         }
 
-        .read-more:hover { text-decoration: underline; }
+        .read-more:hover { gap: 12px; color: var(--white); }
 
-        /* Master Footer Styles (as per global consistency) */
+        /* Footer */
         footer {
             background-color: var(--stone-900);
-            padding: 4rem 10% 2rem;
+            padding: 5rem 5% 2rem;
             border-top: 4px solid var(--amber-500);
         }
 
         .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 3rem;
         }
 
-        .footer-section h4 { color: var(--amber-500); margin-bottom: 1.5rem; text-transform: uppercase; }
-        .footer-section p, .footer-section li { color: var(--stone-400); font-size: 0.95rem; }
+        .footer-section h4 { color: var(--amber-500); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-section p, .footer-section li { color: var(--stone-400); font-size: 0.95rem; margin-bottom: 0.5rem; }
         .footer-section ul { list-style: none; padding: 0; }
-        .footer-section a { color: inherit; text-decoration: none; }
+        .footer-section a { color: inherit; text-decoration: none; transition: 0.3s; }
         .footer-section a:hover { color: var(--amber-500); }
 
-        @media (max-width: 768px) {
-            header.top-nav { flex-direction: column; gap: 1rem; }
-            .blog-hero h2 { font-size: 2rem; }
+        /* Responsive Breakpoints */
+        @media (max-width: 850px) {
+            .menu-toggle { display: block; }
+
+            nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background: var(--stone-900);
+                padding: 6rem 2rem;
+                border-right: 2px solid var(--amber-500);
+                transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1000;
+            }
+
+            nav.active { left: 0; }
+            nav ul { flex-direction: column; gap: 2rem; }
+            nav a { font-size: 1.4rem; }
+            
+            .footer-container { text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <header class="top-nav">
+    <header>
         <h1>Azyet Fine Cuts</h1>
-        <nav>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav id="main-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -150,37 +217,46 @@
 
     <div class="blog-hero">
         <h2>The Sharp Edge</h2>
-        <p>Grooming Tips & Shop Updates</p>
+        <p>Expert Grooming & Shop Updates</p>
     </div>
 
     <main class="blog-container">
+        <!-- Post 1 -->
         <article>
-            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1590540179852-2110a54f813a?auto=format&fit=crop&q=80&w=600');"></div>
+            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1590540179852-2110a54f813a?auto=format&fit=crop&q=80&w=600');">
+                <span class="category-tag">Maintenance</span>
+            </div>
             <div class="article-content">
-                <span class="meta">April 20, 2026 • Maintenance</span>
+                <span class="meta">April 20, 2026</span>
                 <h2>5 Tips to Maintain Your Beard at Home</h2>
-                <p>Maintaining a beard requires more than just letting it grow. From oiling to trimming techniques, here is your essential guide...</p>
-                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                <p>Proper beard care is a daily ritual. From choosing the right oils to mastering the art of the mustache trim, we break down the essentials.</p>
+                <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></a>
             </div>
         </article>
 
+        <!-- Post 2 -->
         <article>
-            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1512690196252-741ef2ae3f90?auto=format&fit=crop&q=80&w=600');"></div>
+            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1512690196252-741ef2ae3f90?auto=format&fit=crop&q=80&w=600');">
+                <span class="category-tag">Lifestyle</span>
+            </div>
             <div class="article-content">
-                <span class="meta">March 15, 2026 • Lifestyle</span>
-                <h2>Why the Hot Towel Shave is a Must-Try</h2>
-                <p>Beyond the relaxation, there are skin benefits you didn't know about. Discover why this tradition is making a modern comeback...</p>
-                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                <span class="meta">March 15, 2026</span>
+                <h2>The Revival of the Hot Towel Shave</h2>
+                <p>Discover why this centuries-old tradition is the ultimate skin treatment for the modern man. It's more than just a shave; it's a reset.</p>
+                <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></a>
             </div>
         </article>
 
+        <!-- Post 3 -->
         <article>
-            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=600');"></div>
+            <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=600');">
+                <span class="category-tag">Shop News</span>
+            </div>
             <div class="article-content">
-                <span class="meta">Feb 28, 2026 • Shop News</span>
+                <span class="meta">Feb 28, 2026</span>
                 <h2>New Master Barber Joins the Team</h2>
-                <p>We are excited to welcome Elias Thorne, a straight-razor expert with 10 years of experience in luxury grooming...</p>
-                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                <p>We are excited to welcome Elias Thorne to the Azyet family. Specializing in luxury straight-razor fades and classic silhouettes.</p>
+                <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></a>
             </div>
         </article>
     </main>
@@ -189,35 +265,56 @@
         <div class="footer-container">
             <div class="footer-section">
                 <h4>Azyet Fine Cuts</h4>
-                <p>Founded on precision and community, we provide a sanctuary for the modern gentleman. Experience the craft of premium barbering.</p>
+                <p>Precision in every cut. Style in every detail. A premium grooming sanctuary in the heart of Nairobi.</p>
             </div>
             <div class="footer-section">
-                <h4>Shop Hours</h4>
-                <ul>
-                    <li>Mon - Fri: 9:00 AM - 8:00 PM</li>
-                    <li>Sat: 10:00 AM - 6:00 PM</li>
-                    <li>Sun: Closed</li>
-                </ul>
+                <h4>Newsletter</h4>
+                <p>Get grooming tips delivered to your inbox.</p>
+                <form style="display: flex; gap: 5px; margin-top: 1rem;">
+                    <input type="email" placeholder="Email" style="padding: 8px; border-radius: 4px; border: 1px solid var(--stone-700); background: var(--stone-950); color: white; width: 100%;">
+                    <button type="submit" style="background: var(--amber-500); border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer;"><i class="fas fa-paper-plane"></i></button>
+                </form>
             </div>
             <div class="footer-section">
                 <h4>Explore</h4>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">Our Story</a></li>
-                    <li><a href="contact.html">Book Appointment</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>Visit Us</h4>
                 <p>
                     <i class="fas fa-map-marker-alt" style="color: var(--amber-500); margin-right: 8px;"></i> 123 Barber St, Downtown<br>
-                    <i class="fas fa-phone" style="color: var(--amber-500); margin-right: 8px;"></i> (555) 123-4567
+                    <i class="fas fa-phone" style="color: var(--amber-500); margin-right: 8px;"></i> (+254) 725-439354
                 </p>
             </div>
         </div>
         <div style="text-align: center; border-top: 1px solid var(--stone-800); padding-top: 2rem; margin-top: 2rem; font-size: 0.85rem; color: var(--stone-700);">
-            &copy; 2026 Azyet Fine Cuts. All Rights Reserved.
+            &copy; 2026 Azyet Fine Cuts. All Rights Reserved. | Stay Sharp.
         </div>
     </footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('#main-nav');
+        const icon = menuToggle.querySelector('i');
+
+        menuToggle.addEventListener('click', () => {
+            const isActive = nav.classList.toggle('active');
+            icon.classList.toggle('fa-bars', !isActive);
+            icon.classList.toggle('fa-times', isActive);
+            document.body.style.overflow = isActive ? 'hidden' : 'auto';
+        });
+
+        document.addEventListener('click', (e) => {
+            if (nav.classList.contains('active') && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
+                nav.classList.remove('active');
+                icon.classList.replace('fa-times', 'fa-bars');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
 </body>
 </html>

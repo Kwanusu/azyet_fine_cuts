@@ -19,17 +19,23 @@
             --stone-400: #a8a29e;
         }
 
+        * { box-sizing: border-box; }
+
         body {
             font-family: 'Inter', system-ui, sans-serif;
             background-color: var(--stone-950);
             color: var(--white);
             margin: 0;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Navigation */
         header {
-            padding: 1.5rem 10%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -37,30 +43,40 @@
             border-bottom: 1px solid var(--stone-800);
         }
 
-        header h1 { color: var(--amber-500); font-size: 1.5rem; margin: 0; text-transform: uppercase; }
+        header h1 { color: var(--amber-500); font-size: 1.25rem; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
 
-        nav ul { list-style: none; display: flex; gap: 2rem; margin: 0; }
-        nav a { color: var(--white); text-decoration: none; font-weight: 500; transition: 0.3s; }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        nav ul { list-style: none; display: flex; gap: 2rem; margin: 0; padding: 0; }
+        nav a { color: var(--white); text-decoration: none; font-weight: 500; transition: 0.3s; font-size: 0.9rem; }
         nav a:hover { color: var(--amber-500); }
 
         /* Page Hero */
         .services-hero {
             text-align: center;
-            padding: 5rem 10%;
+            padding: clamp(4rem, 10vh, 8rem) 5%;
             background: linear-gradient(rgba(12,10,9,0.8), rgba(12,10,9,0.8)), 
                         url('https://images.unsplash.com/photo-1512690196252-741ef2ae3f90?auto=format&fit=crop&q=80&w=1920');
             background-size: cover;
             background-position: center;
         }
 
-        .services-hero h2 { font-size: 3rem; margin-bottom: 0.5rem; }
-        .services-hero p { color: var(--amber-500); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+        .services-hero h2 { font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 0.5rem; }
+        .services-hero p { color: var(--amber-500); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
 
         /* Service Menu Layout */
         .menu-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 5rem 10%;
+            padding: 5rem 5%;
         }
 
         .service-row {
@@ -68,7 +84,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
-            margin-bottom: 6rem;
+            margin-bottom: 8rem;
         }
 
         .service-row:nth-child(even) { direction: rtl; }
@@ -76,39 +92,44 @@
 
         .service-image img {
             width: 100%;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             border: 1px solid var(--stone-800);
+            display: block;
         }
 
         .service-text h3 {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
             color: var(--amber-500);
             margin-bottom: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .service-text .price { font-family: serif; font-style: italic; color: var(--white); font-size: 1.5rem; }
+        .service-text .price { font-family: serif; font-style: italic; color: var(--white); font-size: 1.8rem; }
         
-        .service-text p { color: var(--stone-400); font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .service-text p { color: var(--stone-400); font-size: 1.1rem; margin-bottom: 2rem; }
 
         .duration {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             background: var(--stone-800);
             color: var(--amber-500);
-            padding: 5px 15px;
+            padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .book-btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 14px 35px;
             background: var(--amber-500);
             color: var(--stone-950);
             text-decoration: none;
@@ -116,30 +137,69 @@
             text-transform: uppercase;
             border-radius: 4px;
             transition: 0.3s;
+            letter-spacing: 1px;
         }
 
-        .book-btn:hover { background: var(--amber-600); transform: translateY(-2px); }
+        .book-btn:hover { background: var(--amber-600); transform: translateY(-3px); }
 
         /* Consistent Footer */
         footer {
             background-color: var(--stone-900);
-            padding: 4rem 10% 2rem;
+            padding: 5rem 5% 2rem;
             border-top: 4px solid var(--amber-500);
         }
 
         .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 3rem;
         }
 
-        .footer-section h4 { color: var(--amber-500); margin-bottom: 1.5rem; text-transform: uppercase; }
-        .footer-section p, .footer-section li { color: var(--stone-400); font-size: 0.95rem; }
-        .footer-section a { color: inherit; text-decoration: none; }
+        .footer-section h4 { color: var(--amber-500); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-section p, .footer-section li { color: var(--stone-400); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .footer-section ul { list-style: none; padding: 0; }
+        .footer-section a { color: inherit; text-decoration: none; transition: 0.3s; }
         .footer-section a:hover { color: var(--amber-500); }
 
+        /* Responsive Breakpoints & Slide-in Menu */
         @media (max-width: 850px) {
-            .service-row, .service-row:nth-child(even) { grid-template-columns: 1fr; direction: ltr; gap: 2rem; }
+            .service-row, .service-row:nth-child(even) { 
+                grid-template-columns: 1fr; 
+                direction: ltr; 
+                gap: 2.5rem; 
+                margin-bottom: 6rem;
+            }
+
+            .menu-toggle { display: block; }
+
+            nav {
+                position: fixed;
+                top: 0;
+                left: -100%; /* Slide-in from LEFT */
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background: var(--stone-900);
+                padding: 6rem 2rem;
+                border-right: 2px solid var(--amber-500);
+                transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+                z-index: 1000;
+            }
+
+            nav.active { left: 0; }
+
+            nav ul { flex-direction: column; gap: 2rem; }
+            nav a { font-size: 1.4rem; letter-spacing: 1px; }
+
+            .service-text h3 { flex-direction: row; justify-content: space-between; }
+        }
+
+        @media (max-width: 480px) {
+            .footer-container { text-align: center; }
+            .footer-section h4::after { content: ''; display: block; width: 30px; height: 2px; background: var(--amber-500); margin: 0.5rem auto 0; }
         }
     </style>
 </head>
@@ -147,7 +207,10 @@
 
     <header>
         <h1>Azyet Fine Cuts</h1>
-        <nav>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav id="main-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -163,6 +226,7 @@
     </div>
 
     <main class="menu-container">
+        <!-- Service 1 -->
         <section class="service-row">
             <div class="service-image">
                 <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&q=80&w=800" alt="The Signature Cut">
@@ -175,6 +239,7 @@
             </div>
         </section>
 
+        <!-- Service 2 -->
         <section class="service-row">
             <div class="service-image">
                 <img src="https://images.unsplash.com/photo-1593702295094-272a9429693d?auto=format&fit=crop&q=80&w=800" alt="Beard Sculpting">
@@ -187,6 +252,7 @@
             </div>
         </section>
 
+        <!-- Service 3 -->
         <section class="service-row">
             <div class="service-image">
                 <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=800" alt="Royal Hot Shave">
@@ -218,7 +284,7 @@
                 <h4>Visit Us</h4>
                 <p>
                     <i class="fas fa-map-marker-alt" style="color: var(--amber-500); margin-right: 8px;"></i> 123 Barber St, Downtown<br>
-                    <i class="fas fa-phone" style="color: var(--amber-500); margin-right: 8px;"></i> (555) 123-4567
+                    <i class="fas fa-phone" style="color: var(--amber-500); margin-right: 8px;"></i> (+254) 725-439354
                 </p>
             </div>
         </div>
@@ -226,5 +292,33 @@
             &copy; 2026 Azyet Fine Cuts. All Rights Reserved.
         </div>
     </footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('#main-nav');
+        const icon = menuToggle.querySelector('i');
+
+        menuToggle.addEventListener('click', () => {
+            const isActive = nav.classList.toggle('active');
+            
+            // Toggle Icon
+            icon.classList.toggle('fa-bars', !isActive);
+            icon.classList.toggle('fa-times', isActive);
+
+            // Lock/Unlock Body Scroll
+            document.body.style.overflow = isActive ? 'hidden' : 'auto';
+        });
+
+        // Close menu if user clicks outside of it
+        document.addEventListener('click', (e) => {
+            if (nav.classList.contains('active') && 
+                !nav.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                nav.classList.remove('active');
+                icon.classList.replace('fa-times', 'fa-bars');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
 </body>
 </html>

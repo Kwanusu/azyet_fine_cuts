@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy | Azyet Fine Cuts</title>
+    <meta name="description" content="Privacy Policy and Terms of Service for Azyet Fine Cuts.">
+    <title>Legal | Azyet Fine Cuts</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -12,10 +13,14 @@
             --stone-950: #0c0a09;
             --stone-900: #1c1917;
             --stone-800: #292524;
+            --stone-700: #44403c;
             --amber-500: #f59e0b;
+            --amber-600: #d97706;
             --white: #fafaf9;
             --stone-400: #a8a29e;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Inter', system-ui, sans-serif;
@@ -23,11 +28,15 @@
             color: var(--white);
             margin: 0;
             line-height: 1.8;
+            overflow-x: hidden;
         }
 
-        /* Top Navigation */
+        /* Navigation */
         header {
-            padding: 1.5rem 10%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -35,93 +44,187 @@
             border-bottom: 1px solid var(--stone-800);
         }
 
-        header h1 { color: var(--amber-500); font-size: 1.2rem; margin: 0; text-transform: uppercase; }
+        header h1 { color: var(--amber-500); font-size: 1.25rem; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
 
-        .back-link {
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
             color: var(--white);
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: color 0.3s;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
         }
 
-        .back-link:hover { color: var(--amber-500); }
+        nav ul { list-style: none; display: flex; gap: 2rem; margin: 0; padding: 0; }
+        nav a { color: var(--white); text-decoration: none; font-weight: 500; transition: 0.3s; font-size: 0.9rem; }
+        nav a:hover { color: var(--amber-500); }
 
         /* Legal Content */
         .content-container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 4rem auto;
-            padding: 0 10%;
+            padding: 0 5%;
         }
 
-        h2 { color: var(--amber-500); font-size: 2rem; margin-top: 3rem; }
-        h3 { color: var(--white); margin-top: 2rem; border-left: 3px solid var(--amber-500); padding-left: 15px; }
+        .legal-card {
+            background: var(--stone-900);
+            padding: clamp(2rem, 5vw, 4rem);
+            border-radius: 8px;
+            border: 1px solid var(--stone-800);
+        }
+
+        h2 { color: var(--amber-500); font-size: 2.2rem; margin: 2rem 0 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        h3 { color: var(--white); margin-top: 2.5rem; border-left: 3px solid var(--amber-500); padding-left: 15px; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 0.5px; }
         
-        p, li { color: var(--stone-400); font-size: 1rem; }
+        p, li { color: var(--stone-400); font-size: 1rem; margin-bottom: 1rem; }
+        ul { padding-left: 20px; }
         
         .last-updated {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--amber-500);
             text-transform: uppercase;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 0.5rem;
         }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--stone-400);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            transition: 0.3s;
+        }
+        .back-btn:hover { color: var(--amber-500); }
 
         /* Footer */
         footer {
             background-color: var(--stone-900);
-            padding: 3rem 10%;
+            padding: 4rem 5% 2rem;
+            border-top: 4px solid var(--amber-500);
+            margin-top: 5rem;
             text-align: center;
-            border-top: 1px solid var(--stone-800);
         }
 
-        footer p { font-size: 0.85rem; color: var(--stone-400); margin: 0; }
+        footer p { font-size: 0.85rem; color: var(--stone-400); }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 850px) {
+            .menu-toggle { display: block; }
+
+            nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background: var(--stone-900);
+                padding: 6rem 2rem;
+                border-right: 2px solid var(--amber-500);
+                transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1000;
+            }
+
+            nav.active { left: 0; }
+            nav ul { flex-direction: column; gap: 2rem; }
+            nav a { font-size: 1.4rem; }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Azyet Fine Cuts</h1>
-        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main class="content-container">
-        <span class="last-updated">Last Updated: April 28, 2026</span>
-        <h2>Privacy Policy</h2>
-        <p>At Azyet Fine Cuts, we respect your privacy and are committed to protecting the personal data you share with us. This policy outlines how we handle your information when you visit our shop or use our website.</p>
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Return to Shop</a>
+        
+        <div class="legal-card">
+            <span class="last-updated">Effective Date: April 28, 2026</span>
+            <h2>Privacy Policy</h2>
+            <p>At Azyet Fine Cuts, we respect your privacy and are committed to protecting the personal data you share with us. This policy outlines how we handle your information when you visit our shop or use our website.</p>
 
-        <h3>1. Information We Collect</h3>
-        <p>When you book an appointment through our site, we collect the following information:</p>
-        <ul>
-            <li>Full Name</li>
-            <li>Phone Number</li>
-            <li>Email Address</li>
-            <li>Service Preferences (e.g., Signature Cut, Beard Sculpting)</li>
-        </ul>
+            <h3>1. Information We Collect</h3>
+            <p>When you book an appointment through our site, we collect the following information:</p>
+            <ul>
+                <li>Full Name</li>
+                <li>Phone Number</li>
+                <li>Email Address</li>
+                <li>Service Preferences (e.g., Signature Cut, Beard Sculpting)</li>
+            </ul>
 
-        <h3>2. How We Use Your Data</h3>
-        <p>We use your information strictly for business operations, specifically:</p>
-        <ul>
-            <li>To confirm and manage your appointments.</li>
-            <li>To send automated reminders via email or SMS.</li>
-            <li>To notify you of any schedule changes or shop updates.</li>
-        </ul>
+            <h3>2. How We Use Your Data</h3>
+            <p>We use your information strictly for business operations, specifically:</p>
+            <ul>
+                <li>To confirm and manage your appointments.</li>
+                <li>To send automated reminders via email or SMS.</li>
+                <li>To notify you of any schedule changes or shop updates.</li>
+            </ul>
 
-        <h3>3. Data Security</h3>
-        <p>Your personal information is stored securely. We do not sell, rent, or lease our client lists to third parties. Access to your data is limited to authorized staff who need the information to perform their grooming services.</p>
+            <h3>3. Data Security</h3>
+            <p>Your personal information is stored securely. We do not sell, rent, or lease our client lists to third parties. Access to your data is limited to authorized staff who need the information to provide grooming services.</p>
 
-        <h3>4. Third-Party Links</h3>
-        <p>Our website may contain links to social media platforms (Instagram, TikTok). Please note that we do not control the privacy policies of these external sites.</p>
+            <hr style="border: 0; border-top: 1px solid var(--stone-800); margin: 4rem 0;">
 
-        <h3>5. Contact Us</h3>
-        <p>If you have any questions regarding your data or wish to have your information removed from our booking system, please contact us at <strong>hello@azyetcuts.com</strong>.</p>
+            <h2 id="terms">Terms of Service</h2>
+            <p>By booking a service with Azyet Fine Cuts, you agree to the following terms and conditions:</p>
+
+            <h3>1. Cancellation Policy</h3>
+            <p>We value our barbers' time. Please provide at least 24 hours' notice if you need to cancel or reschedule. Repeated "no-shows" may require a non-refundable deposit for future bookings.</p>
+
+            <h3>2. Arrival Time</h3>
+            <p>Please arrive at least 5 minutes before your scheduled time. If you are more than 15 minutes late, we may need to reschedule your appointment to ensure our other clients are seen on time.</p>
+
+            <h3>3. Right of Refusal</h3>
+            <p>Our shop maintains a professional and respectful environment. We reserve the right to refuse service to anyone demonstrating disrespectful or inappropriate behavior toward our staff or other clients.</p>
+
+            <h3>4. Contact Us</h3>
+            <p>If you have any questions regarding your data or these terms, please contact us at <strong>hello@azyetcuts.com</strong>.</p>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Azyet Fine Cuts. All Rights Reserved. Stay Sharp.</p>
+        <p>&copy; 2026 Azyet Fine Cuts. All Rights Reserved. | Stay Sharp.</p>
     </footer>
 
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('#main-nav');
+        const icon = menuToggle.querySelector('i');
+
+        menuToggle.addEventListener('click', () => {
+            const isActive = nav.classList.toggle('active');
+            icon.classList.toggle('fa-bars', !isActive);
+            icon.classList.toggle('fa-times', isActive);
+            document.body.style.overflow = isActive ? 'hidden' : 'auto';
+        });
+
+        document.addEventListener('click', (e) => {
+            if (nav.classList.contains('active') && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
+                nav.classList.remove('active');
+                icon.classList.replace('fa-times', 'fa-bars');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
 </body>
 </html>
