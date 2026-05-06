@@ -1,4 +1,4 @@
-/* Modern Stone & Amber Palette */
+/* --- 1. VARIABLES & RESET --- */
 :root {
     --stone-950: #0c0a09;
     --stone-900: #1c1917;
@@ -6,61 +6,146 @@
     --amber-500: #f59e0b;
     --amber-600: #d97706;
     --white: #fafaf9;
+
+    /* Consistency Variables */
+    --radius-main: 8px;
+    --radius-large: 24px;
+    --input-height: 54px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; 
 }
 
 body {
     font-family: 'Inter', system-ui, sans-serif;
     color: var(--white);
     margin: 0;
-    
-    /* Background logic moved here */
     background: linear-gradient(rgba(12, 10, 9, 0.8), rgba(12, 10, 9, 0.8)), 
                 url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=1920');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* The image stays still while you scroll */
+    background-attachment: fixed;
+    overflow-x: hidden;
 }
 
-/* Header Styles (Moved from Inline) */
+/* --- 2. NAVIGATION & DRAWER --- */
 header {
-    /* Positioning Logic */
     position: sticky;
     top: 0;
-    z-index: 1000; /* High value ensures it stays above all other content */
-    
-    /* Design & Glassmorphism */
-    padding: 1rem 10%;
+    z-index: 1000;
+    padding: 1rem 5%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    
-    /* Semi-transparent background with blur */
-    background: rgba(12, 10, 9, 0.8); 
+    gap: 20px;
+    background: rgba(12, 10, 9, 0.85); 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    
-    /* Subtle bottom border to define the edge against the background */
     border-bottom: 1px solid rgba(250, 250, 249, 0.05);
 }
 
 header h1 {
     color: var(--amber-500);
     margin: 0;
+    font-size: clamp(1.1rem, 4vw, 1.8rem);
+}
+
+/* Desktop Nav Styling */
+header nav {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
 }
 
 header nav a {
     color: white;
     text-decoration: none;
-    margin-left: 20px;
+    margin-left: 25px;
+    font-size: 0.9rem;
+    transition: var(--transition);
 }
 
+header nav a:hover { color: var(--amber-500); }
+
+/* --- ICON & TOGGLE LOGIC --- */
+#menu-toggle { display: none; }
+
+.menu-icons-wrapper {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+    color: var(--amber-500);
+    font-size: 1.5rem;
+}
+
+.close-icon-inside { display: none; } /* Hidden on desktop */
+
+@media (max-width: 768px) {
+    .menu-icons-wrapper { 
+        display: block; 
+        order: -1; /* Puts hamburger on the left */
+    }
+
+    /* Drawer Styling */
+    header nav {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 280px;
+        height: 100vh;
+        background: var(--stone-900);
+        flex-direction: column;
+        padding: 5rem 2rem;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+        border-right: 2px solid var(--amber-500);
+        margin-left: 0;
+        z-index: 2001;
+    }
+
+    /* Slide Drawer In */
+    #menu-toggle:checked ~ nav {
+        transform: translateX(300px);
+    }
+
+    /* X Icon Appearance in Slider */
+    .close-icon-inside {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 1.8rem;
+        color: var(--amber-500);
+        cursor: pointer;
+    }
+
+    /* Hide Hamburger when drawer is open */
+    #menu-toggle:checked ~ .menu-icons-wrapper {
+        visibility: hidden;
+    }
+
+    header nav a {
+        margin: 1.5rem 0;
+        margin-left: 0;
+        font-size: 1.3rem;
+        border-bottom: 1px solid var(--stone-800);
+        padding-bottom: 10px;
+        width: 100%;
+    }
+}
+
+/* --- 3. HERO & CTA GROUP --- */
 #hero {
-    height: 100vh;
-    min-height: 600px; /* Ensures it doesn't get too squashed on short wide screens */
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 2rem 5%;
 }
 
 .hero-card {
@@ -69,101 +154,155 @@ header nav a {
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(250, 250, 249, 0.1);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
-    
-    padding: clamp(2rem, 5vw, 4rem); /* Responsive padding */
-    border-radius: 24px;
-    
-    /* The Big Screen Fix */
-    max-width: 800px; /* Prevents the card from becoming an awkward wide strip */
+    padding: clamp(2.5rem, 6vw, 4rem);
+    border-radius: var(--radius-large);
+    max-width: 800px;
     width: 100%;
-    margin: 0 auto;
 }
 
 .hero-card h2 {
-    /* Font size grows with screen but stops at 4.5rem */
-    font-size: clamp(2.5rem, 6vw, 4.5rem); 
+    font-size: clamp(2.2rem, 7vw, 4rem); 
     line-height: 1.1;
     margin-bottom: 1.5rem;
-    color: var(--white);
 }
 
-.hero-card p {
-    font-size: clamp(1rem, 2vw, 1.5rem);
-    margin-bottom: 3rem;
-    color: #d6d3d1;
-    max-width: 90%; /* Keeps text lines from being too long to read */
-    margin-left: auto;
-    margin-right: auto;
+.hero-card .cta-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 2rem;
 }
 
+/* --- 4. INPUTS & BUTTONS --- */
+input[type="text"], 
+button, 
 .btn-primary {
+    height: var(--input-height);
+    border-radius: var(--radius-main);
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    transition: var(--transition);
+}
+
+input[type="text"] {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid var(--stone-800);
+    color: var(--white);
+    padding: 0 1.5rem;
+    width: 100%;
+    flex: 1;
+    min-width: 250px;
+}
+
+input[type="text"]:focus {
+    border-color: var(--amber-500);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+button, .btn-primary {
     background-color: var(--amber-500);
     color: var(--stone-950);
-    padding: 1rem 2.5rem;
-    border: none;
+    padding: 0 2rem;
     font-weight: 700;
     text-transform: uppercase;
     cursor: pointer;
-    transition: background 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
-.btn-primary:hover { background-color: var(--amber-600); }
+button:hover, .btn-primary:hover {
+    background-color: var(--amber-600);
+    transform: translateY(-2px);
+}
 
-/* Services */
-#services { padding: 5rem 10%; text-align: center; }
+/* --- 5. GRID SECTIONS --- */
+#services { padding: 5rem 5%; text-align: center; }
 
-.services-grid {
+.services-grid, .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
 }
 
-.service-card {
+.service-card, .grid article {
     background: var(--stone-900);
     border: 1px solid var(--stone-800);
-    padding: 2rem;
-    border-radius: 8px;
-    transition: transform 0.3s;
+    padding: 2.5rem 1.5rem;
+    border-radius: var(--radius-large);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
 }
 
-.service-card:hover { transform: translateY(-10px); border-color: var(--amber-500); }
+.service-card:hover, .grid article:hover {
+    transform: translateY(-10px);
+    border-color: var(--amber-500);
+}
 
 .service-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 12px;
     margin-bottom: 1.5rem;
 }
 
-.price { color: var(--amber-500); font-weight: bold; font-size: 1.2rem; display: block; margin-top: 10px; }
+/* --- 6. PRICING --- */
+.grid { padding: 5rem 10%; background: rgba(12, 10, 9, 0.3); }
 
-/* Socials */
-.social-links {
+.price-tag {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
     display: flex;
-    gap: 15px;
-    margin-top: 1rem;
+    flex-direction: column;
+    align-items: center;
 }
 
-.social-links a {
+.grid article button {
+    margin-top: auto;
+    background: transparent;
+    border: 2px solid var(--amber-500);
+    color: var(--amber-500);
+    width: 100%;
+}
+
+.grid article button:hover {
+    background: var(--amber-500);
+    color: var(--stone-950);
+}
+
+/* --- 7. SOCIAL LINKS --- */
+.social-links, .floating-socials {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a, .floating-socials a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     background: var(--stone-800);
     color: var(--white);
     border-radius: 50%;
-    transition: all 0.3s ease;
     text-decoration: none;
-    font-size: 1.2rem;
+    transition: var(--transition);
+    border: 1px solid rgba(250, 250, 249, 0.1);
 }
 
-.social-links a:hover {
+.social-links a:hover, .floating-socials a:hover {
     background: var(--amber-500);
     color: var(--stone-950);
-    transform: translateY(-3px);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--amber-500);
 }
 
 .floating-socials {
@@ -171,46 +310,60 @@ header nav a {
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    display: flex;
     flex-direction: column;
-    gap: 10px;
     z-index: 100;
 }
 
-.floating-socials a {
-    color: var(--amber-500);
-    font-size: 1.5rem;
-}
-
-@media (max-width: 768px) {
-    .floating-socials { display: none; }
-}
-
-/* Footer */
+/* --- 8. FOOTER --- */
 footer {
     background-color: var(--stone-900);
-    padding: 4rem 10% 2rem;
+    padding: 4rem 0 2rem;
     border-top: 4px solid var(--amber-500);
 }
 
 .footer-container {
+    padding: 0 5%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 3rem;
     margin-bottom: 3rem;
 }
 
-.footer-section h4 { color: var(--amber-500); margin-bottom: 1.5rem; text-transform: uppercase; }
-.footer-section p, .footer-section li { color: #a8a29e; font-size: 0.9rem; line-height: 1.8; }
-.footer-section ul { list-style: none; padding: 0; }
-.footer-section a { color: inherit; text-decoration: none; }
+.footer-section h4 { color: var(--amber-500); margin-bottom: 1.2rem; text-transform: uppercase; }
+.footer-section ul { list-style: none; padding: 0; margin: 0; }
+.footer-section li { margin-bottom: 0.5rem; }
+.footer-section a { color: #a8a29e; text-decoration: none; transition: var(--transition); }
 .footer-section a:hover { color: var(--amber-500); }
-.footer-section i { color: var(--amber-500); margin-right: 8px; }
 
 .footer-bottom {
+    display: block;
+    width: 100%;
     text-align: center;
     border-top: 1px solid var(--stone-800);
-    padding-top: 2rem;
+    padding: 2rem 5% 0;
+    margin-top: 2rem;
     font-size: 0.8rem;
-    color: #57534e;
+    color: var(--white);
+    clear: both;
+}
+
+/* --- 9. FINAL MOBILE OVERRIDES --- */
+@media (max-width: 768px) {
+    .floating-socials { display: none; }
+    
+    /* Hero Input Sturdiness Fix */
+    .hero-card .cta-group { 
+        flex-direction: column; 
+        align-items: stretch; 
+    }
+    
+    input[type="text"] { 
+        width: 100% !important; 
+        min-width: 100%; 
+        flex: none; 
+    }
+    
+    button, .btn-primary { width: 100%; }
+
+    .grid { padding: 3rem 5%; }
 }

@@ -11,8 +11,20 @@
 <body ><!-- inline styling-->
 
     <header>
+        
+        <input type="checkbox" id="menu-toggle">
+        
+        <label for="menu-toggle" class="menu-icons-wrapper">
+            <i class="fas fa-bars icon-open"></i>
+        </label>
+
         <h1>Azyet Fine Cuts</h1>
+
         <nav>
+            <!-- The X now lives inside the nav drawer -->
+            <label for="menu-toggle" class="close-icon-inside">
+                <i class="fas fa-times"></i>
+            </label>
             <a href="about.html">About</a>
             <a href="services.html">Services</a>
             <a href="gallery.html">Gallery</a>
@@ -23,12 +35,14 @@
     </header>
 
     <main>
-        <section id="hero">
+       <section id="hero">
             <div class="hero-card">
                 <h2>Precision Meets Style</h2>
                 <p>Experience the finest grooming services in the city.</p>
-                <button class="btn-primary">Book an Appointment</button>
-                <input type="text" placeholder="Enter your name">
+                <div class="cta-group">
+                    <input type="text" placeholder="Enter your name">
+                    <button class="btn-primary">Book an Appointment</button>
+                </div>
             </div>
         </section>
 
@@ -84,6 +98,7 @@
 
 <footer id="footer-section">
     <div class="footer-container">
+        <!-- Section 1 -->
         <div class="footer-section">
             <h4>Azyet Fine Cuts</h4>
             <p>We pride ourselves on the craft of barbering. Our shop is a place where tradition meets modern style.</p>
@@ -92,10 +107,10 @@
                 <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
                 <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href=" https://zinduaschool.com" target="_self">Learn more</a>
             </div>
         </div>
 
+        <!-- Section 2 -->
         <div class="footer-section">
             <h4>Working Hours</h4>
             <ul>
@@ -105,6 +120,7 @@
             </ul>
         </div>
 
+        <!-- Section 3 -->
         <div class="footer-section">
             <h4>Quick Links</h4>
             <ul>
@@ -114,7 +130,9 @@
                 <li><a href="legal.html">Terms of Service</a></li>
             </ul>
         </div>
-    
+    </div> <!-- Close footer-container -->
+
+    <!-- footer-bottom MUST be outside the container to stay at the bottom center -->
     <div class="footer-bottom">
         <p>&copy; 2026 Azyet Fine Cuts. All Rights Reserved. | Stay Sharp.</p>
     </div>
